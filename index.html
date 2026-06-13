@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三角洲行动 - 代肝服务终端</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header" id="triggerHeader">
+        <h1 id="mainTitle">DELTA FORCE // 后勤支援中心</h1>
+        <div id="easterEggContainer" class="easter-egg-container hidden"></div>
+    </header>
+
+    <main class="container">
+        <!-- 商品列表 -->
+        <section class="products-section">
+            <h2>选择补给方案</h2>
+            <div id="productList" class="product-grid"></div>
+        </section>
+
+        <!-- 购物车 -->
+        <section class="cart-section">
+            <h2>物资清单</h2>
+            <div id="cartItems" class="cart-items">
+                <p class="empty-cart">[ 清单为空 ]</p>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>总数量：</span>
+                    <span id="totalQuantity">0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>合计费用：</span>
+                    <span id="totalAmount">¥0.00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 订单信息 -->
+        <section class="order-form">
+            <h2>任务确认</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="customerName">干员代号 *</label>
+                    <input type="text" id="customerName" required placeholder="请输入您的游戏昵称">
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">联络频道 *</label>
+                    <input type="tel" id="customerPhone" required placeholder="请输入联系电话/微信">
+                </div>
+                
+                <div class="contact-info">
+                    <span>后勤官微信号：xx15467856</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>资金渠道 *</label>
+                    <div class="payment-methods">
+                        <label class="payment-option selected" onclick="selectPayment('wechat')">
+                            <input type="radio" name="payment" value="wechat" checked>
+                            <div>微信支付</div>
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('alipay')">
+                            <input type="radio" name="payment" value="alipay">
+                            <div>支付宝</div>
+                        </label>
+                    </div>
+                    
+                    <div id="qrWechat" class="qr-container active">
+                        <img src="payment-qr.jpg" alt="WeChat QR">
+                    </div>
+                    <div id="qrAlipay" class="qr-container">
+                        <img src="payment-alipay.jpg" alt="Alipay QR">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="remark">战术备注</label>
+                    <textarea id="remark" rows="2" placeholder="如有特殊要求请在此说明..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">确认下达任务</button>
+            </form>
+        </section>
+
+        <!-- 订单确认弹窗 -->
+        <div id="orderModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>// 任务已接收 //</h2>
+                <div id="orderDetails"></div>
+                <button onclick="closeModal()" class="modal-btn">关闭终端</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
